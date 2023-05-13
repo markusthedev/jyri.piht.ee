@@ -1,0 +1,8 @@
+# .gitignore
+.env
+*.pem
+server_logs.txt
+changes.txt
+piht.txt
+chat_history.txt
+registrations.json

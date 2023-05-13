@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lõpupidu</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+    body, html {
+        height: 1000px;
+        font-family: Arial, sans-serif;
+        background-image: url('../static/images/artur.jpg');
+        background-size: cover;
+        color: #ffffff;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    h1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        flex-grow: 1;
+        border: none;
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #40444b;
+        color: #ffffff;
+        margin-right: 0.5rem;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    button {
+        background-color: #7289da;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        font-size: 16px;
+        color: #ffffff;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    button:hover {
+        background-color: #677bc4;
+    }
+
+    button:active {
+        background-color: #4e5d94;
+    }
+    input[type="checkbox"], input[type="radio"] {
+        width: 16px;
+        height: 16px;
+        background-color: #40444b;
+        border: 1px solid #ffffff;
+        border-radius: 3px;
+        margin-right: 8px;
+    }
+
+    input[type="checkbox"]:checked, input[type="radio"]:checked {
+        background-color: #7289da;
+    }
+    </style>
+</head>
+<body>
+    <h1>Registreerimine</h1>
+    <br>
+    <form action="{{ url_for('lopupidu') }}" method="post" onsubmit="return validateForm();">
+        <label for="full_name">Täis nimi:</label>
+        <input type="text" name="full_name" id="full_name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required>
+        <br>
+        <label for="stay_option">Ööbimine:</label>
+        <div id="stay_option">
+            <input type="radio" id="stay_yes" name="stay" value="ööbimisega" required>
+            <label for="stay_yes">ööbimisega</label>
+            <input type="radio" id="stay_no" name="stay" value="ei ööbi" required>
+            <label for="stay_no">ei ööbi</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>    
+</body>
+</html>

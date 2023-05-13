@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nimekiri</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#edit-button').click(function() {
+                $('#edit-form').toggle();
+            });
+
+            $('#edit-form').submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/lopupidu/nimekiri/edit',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ 'newData': $('#json-input').val() }),
+                    success: function() {
+                        alert('Data saved!');
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('There was an error saving the data.');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+    body, html {
+        height: 1000px;
+        font-family: Arial, sans-serif;
+        background-image: url('../static/images/artur.jpg');
+        background-size: cover;
+        color: #ffffff;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #data_table {
+        width: 80%;
+        height: auto;
+        overflow-y: scroll;
+        border: 1px solid #7289da;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #data_table td, #data_table th {
+        border: 1px solid #40444b;
+        padding: 8px;
+    }
+    button {
+        background-color: #7289da;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        font-size: 16px;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #677bc4;
+    }
+    button:active {
+        background-color: #4e5d94;
+    }
+    #edit-form {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #json-input {
+        width: 100%;
+        height: 80%;
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Lõpupeo nimekiri</h1>
+        <h2>Kokku registreerinud: {{ total }}</h2>
+        <h2>Ööbimisega: {{ stay_count }}</h2>
+        <button id="edit-button">Edit</button>
+        <br>
+        <table id="data_table">
+            <tr>
+                <th>Nimi</th>
+                <th>Ööbimisega/ei ööbi</th>
+                <th>Järjekorra number</th>
+                <th>Maksnud</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <td>{{ item['name'] }}</td>
+                <td>{{ item['stay'] }}</td>
+                <td>{{ item['nr'] }}</td>
+                <td>{{ item['maksnud'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form id="edit-form">
+            <textarea id="json-input">{{ json_data }}</textarea> <!-- Added json_data -->
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>
