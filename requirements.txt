@@ -1,0 +1,3 @@
+Flask==2.0.2
+flask_socketio==5.1.1
+python-dotenv==0.19.1
