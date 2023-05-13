@@ -5,13 +5,13 @@ Lehekülg kus saad hostida enda "pihti". Lisaks on siin ka registreerimisvorm, m
 
 1. Paigalda Python. Rakendus on testitud Pythoni versiooniga 3.8, aga peaks töötama ka uuemate versioonidega.
 
-2. Kloonige see repositoorium oma arvutisse:
+2. Kloonige see repo oma arvutisse:
 
     ```
     git clone https://github.com/markusthedev/jyri.piht.ee
     ```
 
-3. Navigeerige repositooriumi kausta:
+3. Navigeerige repo kausta:
 
     ```
     cd jyri.piht.ee
